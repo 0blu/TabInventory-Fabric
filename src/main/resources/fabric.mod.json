@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "tabinventory",
+  "version": "${version}",
+
+  "depends": {
+    "minecraft": "1.16.x",
+    "fabricloader": ">=0.7.8",
+    "fabric": "*"
+  },
+
+  "name": "Tab Inventory",
+  "description": "Allows the inventory key to be Tab just like in 1.13",
+  "authors": [
+    "_BLU"
+  ],
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/tab-inventory-fabric",
+    "issues": "https://github.com/0blu/TabInventory-Fabric/issues",
+    "sources": "https://github.com/0blu/TabInventory-Fabric"
+  },
+
+  "license": "Apache License 2.0",
+  "icon": "assets/tabinventory/icon.png",
+
+  "environment": "client",
+  "mixins": [
+    "tabinventory.mixins.json"
+  ]
+}

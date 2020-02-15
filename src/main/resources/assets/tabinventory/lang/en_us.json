@@ -1,0 +1,4 @@
+{
+  "controls.unsafeBinding.title": "Unsafe keybind warning!",
+  "controls.unsafeBinding.message": "Binding to '%s' can cause significant issues if you depend on accessibility features.\n\nAre you sure you want to continue?"
+}
