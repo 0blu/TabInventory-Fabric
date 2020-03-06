@@ -70,7 +70,7 @@ public abstract class ControlsOptionsMixin extends GameOptionsScreen {
         }
 
         double scrollAmount = keyBindingListWidget.getScrollAmount();
-        minecraft.openScreen(new ConfirmScreen((confirmation) -> {
+        client.openScreen(new ConfirmScreen((confirmation) -> {
             if (confirmation) {
                 // Set and save the binding
                 gameOptions.setKeyCode(binding, newKeyCode);
@@ -79,7 +79,7 @@ public abstract class ControlsOptionsMixin extends GameOptionsScreen {
             }
 
             // Go back to the ControlsOptionsScreen
-            minecraft.openScreen(this);
+            client.openScreen(this);
             keyBindingListWidget.setScrollAmount(scrollAmount);
         }, titleText, messageText));
     }

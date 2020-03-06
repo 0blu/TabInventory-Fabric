@@ -17,8 +17,8 @@ public abstract class ContainerScreenMixin extends Screen {
 
     @Inject(at = @At("HEAD"), method = "keyPressed", cancellable = true)
     public void keyPressed(int keyCode, int scanCode, int modifiers, CallbackInfoReturnable<Boolean> callbackInfo) {
-        if (minecraft.options.keyInventory.matchesKey(keyCode, scanCode) && keyCode == GLFW_KEY_TAB) {
-            minecraft.player.closeContainer();
+        if (client.options.keyInventory.matchesKey(keyCode, scanCode) && keyCode == GLFW_KEY_TAB) {
+            client.player.closeContainer();
             callbackInfo.setReturnValue(true);
             callbackInfo.cancel();
         }
