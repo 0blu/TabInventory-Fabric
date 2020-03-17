@@ -1,9 +1,10 @@
 package wtf.blu.tabinventory.mixin;
 
 import net.minecraft.client.gui.screen.ConfirmScreen;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.options.ControlsListWidget;
 import net.minecraft.client.gui.screen.options.ControlsOptionsScreen;
-import net.minecraft.client.gui.screen.options.GameOptionsScreen;
+import net.minecraft.client.options.GameOptions;
 import net.minecraft.client.options.KeyBinding;
 import net.minecraft.client.resource.language.I18n;
 import net.minecraft.client.util.InputUtil;
@@ -12,6 +13,7 @@ import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Util;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -21,9 +23,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import static org.lwjgl.glfw.GLFW.GLFW_KEY_TAB;
 
 @Mixin(ControlsOptionsScreen.class)
-public abstract class ControlsOptionsMixin extends GameOptionsScreen {
+public abstract class ControlsOptionsMixin extends Screen {
     public ControlsOptionsMixin() {
-        super(null, null, null);
+        super(null);
     }
 
     @Shadow
@@ -34,6 +36,8 @@ public abstract class ControlsOptionsMixin extends GameOptionsScreen {
 
     @Shadow
     private ControlsListWidget keyBindingListWidget;
+
+    @Shadow @Final private GameOptions options;
 
     @Inject(at = @At("HEAD"), method = "keyPressed", cancellable = true)
     public void keyPressed(int keyCode, int scanCode, int modifiers, CallbackInfoReturnable<Boolean> callbackInfo) {
@@ -73,7 +77,7 @@ public abstract class ControlsOptionsMixin extends GameOptionsScreen {
         minecraft.openScreen(new ConfirmScreen((confirmation) -> {
             if (confirmation) {
                 // Set and save the binding
-                gameOptions.setKeyCode(binding, newKeyCode);
+                options.setKeyCode(binding, newKeyCode);
                 time = Util.getMeasuringTimeMs();
                 KeyBinding.updateKeysByCode();
             }
