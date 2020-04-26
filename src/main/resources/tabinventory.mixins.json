@@ -3,7 +3,7 @@
   "package": "wtf.blu.tabinventory.mixin",
   "compatibilityLevel": "JAVA_8",
   "client": [
-    "ContainerScreenMixin",
+    "HandledScreenMixin",
     "ControlsOptionsMixin"
   ],
   "injectors": {

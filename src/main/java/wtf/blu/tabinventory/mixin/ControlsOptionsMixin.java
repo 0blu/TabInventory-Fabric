@@ -7,6 +7,7 @@ import net.minecraft.client.gui.screen.options.GameOptionsScreen;
 import net.minecraft.client.options.KeyBinding;
 import net.minecraft.client.resource.language.I18n;
 import net.minecraft.client.util.InputUtil;
+import net.minecraft.text.BaseText;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
@@ -63,7 +64,7 @@ public abstract class ControlsOptionsMixin extends GameOptionsScreen {
         Text titleText = new TranslatableText("controls.unsafeBinding.title").formatted(Formatting.RED, Formatting.BOLD);
 
         String[] splitted = I18n.translate("controls.unsafeBinding.message", "%s").split("%s", 2);
-        Text messageText = new LiteralText(splitted[0]);
+        BaseText messageText = new LiteralText(splitted[0]);
         if (splitted.length > 1) {
             messageText.append(unsafeKeyText);
             messageText.append(splitted[1]);
