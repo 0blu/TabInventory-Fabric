@@ -39,11 +39,11 @@ public abstract class ControlsOptionsMixin extends GameOptionsScreen {
     @Inject(at = @At("HEAD"), method = "keyPressed", cancellable = true)
     public void keyPressed(int keyCode, int scanCode, int modifiers, CallbackInfoReturnable<Boolean> callbackInfo) {
         if (focusedBinding != null && keyCode == GLFW_KEY_TAB) {
-            InputUtil.KeyCode newKeyCode = InputUtil.getKeyCode(keyCode, scanCode);
+            InputUtil.Key newKeyCode = InputUtil.fromKeyCode(keyCode, scanCode);
 
             if (
                     !focusedBinding.matchesKey(keyCode, scanCode) && // It was not changed
-                    !focusedBinding.getDefaultKeyCode().equals(newKeyCode) // TAB is already the default key
+                    !focusedBinding.getDefaultKey().equals(newKeyCode) // TAB is already the default key
             ) {
                 // User really tries to set TAB to a binding
                 // Catch the event
@@ -59,8 +59,8 @@ public abstract class ControlsOptionsMixin extends GameOptionsScreen {
         }
     }
 
-    private void AskUserAndBind(KeyBinding binding, InputUtil.KeyCode newKeyCode) {
-        Text unsafeKeyText = new TranslatableText(newKeyCode.getName()).formatted(Formatting.YELLOW);
+    private void AskUserAndBind(KeyBinding binding, InputUtil.Key newKeyCode) {
+        Text unsafeKeyText = new TranslatableText(newKeyCode.toString()).formatted(Formatting.YELLOW);
         Text titleText = new TranslatableText("controls.unsafeBinding.title").formatted(Formatting.RED, Formatting.BOLD);
 
         String[] splitted = I18n.translate("controls.unsafeBinding.message", "%s").split("%s", 2);
